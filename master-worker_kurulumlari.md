@@ -293,6 +293,53 @@ kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 
 ![image](https://user-images.githubusercontent.com/261946/184077215-258dcff0-e6cb-4cc7-a8b9-6c075656763d.png)
 
+### Weave Net Ağ Eklentisini Yüklemek
+
+```shell
+kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+```
+
+Kurulumu MASTER düğüme yapıyoruz ve CNI yüklenmeden önce hem MASTER hem WORKER düğümlerin "Not Ready" olan durumları kurulum sonrası "Ready" oluyor.
+
+```shell
+cloud_user@k8s-control:~$ kubectl get nodes -o wide
+NAME          STATUS     ROLES           AGE   VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION    CONTAINER-RUNTIME
+k8s-control   NotReady   control-plane   10m   v1.24.0   10.0.1.101    <none>        Ubuntu 20.04.3 LTS   5.11.0-1028-aws   containerd://1.5.9
+k8s-worker1   NotReady   <none>          68s   v1.24.0   10.0.1.102    <none>        Ubuntu 20.04.3 LTS   5.11.0-1028-aws   containerd://1.5.9
+cloud_user@k8s-control:~$
+cloud_user@k8s-control:~$ kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+WARNING: This version information is deprecated and will be replaced with the output from kubectl version --short.  Use --output=yaml|json to get the full version.
+serviceaccount/weave-net created
+clusterrole.rbac.authorization.k8s.io/weave-net created
+clusterrolebinding.rbac.authorization.k8s.io/weave-net created
+role.rbac.authorization.k8s.io/weave-net created
+rolebinding.rbac.authorization.k8s.io/weave-net created
+daemonset.apps/weave-net created
+cloud_user@k8s-control:~$
+cloud_user@k8s-control:~$ kubectl get nodes -o wide
+NAME          STATUS   ROLES           AGE     VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION    CONTAINER-RUNTIME
+k8s-control   Ready    control-plane   11m     v1.24.0   10.0.1.101    <none>        Ubuntu 20.04.3 LTS   5.11.0-1028-aws   containerd://1.5.9
+k8s-worker1   Ready    <none>          2m18s   v1.24.0   10.0.1.102    <none>        Ubuntu 20.04.3 LTS   5.11.0-1028-aws   containerd://1.5.9
+cloud_user@k8s-control:~$
+```
+
+Yüklü olan CNI türünü görmek için `kubectl get pods -n kube-system` komutunu çalıştırıyoruz:
+
+```shell
+cloud_user@k8s-control:~$ kubectl get pods -n kube-system
+NAME                                  READY   STATUS    RESTARTS      AGE
+coredns-6d4b75cb6d-fgxsx              1/1     Running   0             12m
+coredns-6d4b75cb6d-sdgt9              1/1     Running   0             12m
+etcd-k8s-control                      1/1     Running   0             12m
+kube-apiserver-k8s-control            1/1     Running   0             12m
+kube-controller-manager-k8s-control   1/1     Running   0             12m
+kube-proxy-9xj4m                      1/1     Running   0             12m
+kube-proxy-v5zp7                      1/1     Running   0             3m11s
+kube-scheduler-k8s-control            1/1     Running   0             12m
+weave-net-przxj                       2/2     Running   1 (86s ago)   96s
+weave-net-wh4k4                       2/2     Running   1 (86s ago)   96s
+```
+
 
 ## Worker Düğümleri Kubernetes Kümesine Eklemek
 
