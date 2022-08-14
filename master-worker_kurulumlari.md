@@ -192,67 +192,6 @@ $ sudo apt-mark hold kubelet kubeadm kubectl
 
 ![image](https://user-images.githubusercontent.com/261946/184072776-43cff758-8537-4a1e-9c0b-a8d64d754e1e.png)
 
-### Tüm komutların listesi
-```shell
-# containerd için ayar dosyasının oluşturmak ve her sistem başlatıldığında kernelin yükleyeceği modülleri belirtmek:
-cat <<EOF | sudo tee /etc/modules-load.d/containerd.conf
-overlay
-br_netfilter
-EOF
-
-# Modülleri yüklemek:
-sudo modprobe overlay
-sudo modprobe br_netfilter
-
-# Kubernetes ağları için sistem ayarlarını yapmak:
-cat <<EOF | sudo tee /etc/sysctl.d/99-kubernetes-cri.conf
-net.bridge.bridge-nf-call-iptables = 1
-net.ipv4.ip_forward = 1
-net.bridge.bridge-nf-call-ip6tables = 1
-EOF
-
-# Son ayarlarla sistemi tekrar yüklü olarak çalıştırmak:
-sudo sysctl --system
-
-# containerd Kurmak:
-sudo apt-get update && sudo apt-get install -y containerd
-
-# ontainerd'nin varsayılan ayarlarını tutan dosya için dizini oluşturmak:
-sudo mkdir -p /etc/containerd
-
-# containerd Ayar dosyasını varsayılan değerlerle oluşturmak:
-sudo containerd config default | sudo tee /etc/containerd/config.toml
-
-# containerd Tekrar başlatılarak ayarların etkin olduğundan emin olmak:
-sudo systemctl restart containerd
-
-# containerd'nin çalıştığından emin olmak:
-sudo systemctl status containerd
-
-# swap Özelliğini kapatmak:
-sudo swapoff -a
-
-# İhtiyacımız olacak diğer paketleri kurmak:
-sudo apt-get update && sudo apt-get install -y apt-transport-https curl
-
-# Google'dan paketleri çekeceğimiz havuzun GPG anahtarını indirmek ve sisteme eklemek:
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-
-# Kubernetes'i paket havuzları listesine eklemek:
-cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
-deb https://apt.kubernetes.io/ kubernetes-xenial main
-EOF
-
-# Paket listesini güncellemek:
-sudo apt-get update
-
-# Kubernetespaketlerini indirmek(Not: Eğer dpkg lock mesajı alırsanız, 1-2 dakika bekleyip tekrar komutu çalıştırın):
-sudo apt-get install -y kubelet=1.24.0-00 kubeadm=1.24.0-00 kubectl=1.24.0-00
-
-# Otomatik güncellemeleri kapatın:
-sudo apt-mark hold kubelet kubeadm kubectl
-```
-
 # Kubernetes Kümesini Oluşturmak
 
 ![image](https://user-images.githubusercontent.com/261946/184493204-e8c8236c-4335-479b-b430-6e87214c2a46.png)
@@ -372,9 +311,11 @@ sudo kubeadm join ...
 ```
 
 İlk Düğüm:
+
 ![image](https://user-images.githubusercontent.com/261946/184507203-20433dc1-25e8-4a96-af68-feab3d03ff05.png)
 
 İkinci Düğüm:
+
 ![image](https://user-images.githubusercontent.com/261946/184507179-022b2965-f28e-49c9-a3da-b04f2f8fc48b.png)
 
 İşçi arıları kovana aldıktan sonra tekrar düğümlerin durumlarına bakabiliriz:
@@ -384,6 +325,102 @@ kubectl get nodes
 ```
 
 Kümeye katılım o anda olmayabilir nitekim "Not Ready" ve "Ready" durumundaki düğümleri ilk ekran görüntüsünde görebiliyorken, bir süre sonra her üç düğümün hazır olduğunu görebileceğiz.
+
 ![image](https://user-images.githubusercontent.com/261946/184507282-9983dd86-0094-4655-9b77-b2ac2aa6d15c.png)
 
 
+
+## Tüm komutların listesi
+```shell
+# containerd için ayar dosyasının oluşturmak ve her sistem başlatıldığında kernelin yükleyeceği modülleri belirtmek:
+cat <<EOF | sudo tee /etc/modules-load.d/containerd.conf
+overlay
+br_netfilter
+EOF
+
+# Modülleri yüklemek:
+sudo modprobe overlay
+sudo modprobe br_netfilter
+
+# Kubernetes ağları için sistem ayarlarını yapmak:
+cat <<EOF | sudo tee /etc/sysctl.d/99-kubernetes-cri.conf
+net.bridge.bridge-nf-call-iptables = 1
+net.ipv4.ip_forward = 1
+net.bridge.bridge-nf-call-ip6tables = 1
+EOF
+
+# Son ayarlarla sistemi tekrar yüklü olarak çalıştırmak:
+sudo sysctl --system
+
+# containerd Kurmak:
+sudo apt-get update && sudo apt-get install -y containerd
+
+# ontainerd'nin varsayılan ayarlarını tutan dosya için dizini oluşturmak:
+sudo mkdir -p /etc/containerd
+
+# containerd Ayar dosyasını varsayılan değerlerle oluşturmak:
+sudo containerd config default | sudo tee /etc/containerd/config.toml
+
+# containerd Tekrar başlatılarak ayarların etkin olduğundan emin olmak:
+sudo systemctl restart containerd
+
+# containerd'nin çalıştığından emin olmak:
+sudo systemctl status containerd
+
+# swap Özelliğini kapatmak:
+sudo swapoff -a
+
+# İhtiyacımız olacak diğer paketleri kurmak:
+sudo apt-get update && sudo apt-get install -y apt-transport-https curl
+
+# Google'dan paketleri çekeceğimiz havuzun GPG anahtarını indirmek ve sisteme eklemek:
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+
+# Kubernetes'i paket havuzları listesine eklemek:
+cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
+deb https://apt.kubernetes.io/ kubernetes-xenial main
+EOF
+
+# Paket listesini güncellemek:
+sudo apt-get update
+
+# Kubernetespaketlerini indirmek(Not: Eğer dpkg lock mesajı alırsanız, 1-2 dakika bekleyip tekrar komutu çalıştırın):
+sudo apt-get install -y kubelet=1.24.0-00 kubeadm=1.24.0-00 kubectl=1.24.0-00
+
+# Otomatik güncellemeleri kapatın:
+sudo apt-mark hold kubelet kubeadm kubectl
+
+# !!!! Buraya kadar CONTROL-DATA plane aynı idi ancak buradan sonra önce MASTER sonra WORKER düğümler için yapılandırmaya devam edeceğiz
+```
+
+```shell
+# !!!! MASTER node komutları !!!!
+
+# CLUSTER içinde ağ bilgilerini tanımlayalım
+sudo kubeadm init --pod-network-cidr 192.168.0.0/16 --kubernetes-version 1.24.0
+
+# kubectl komutlarını her çalıştırdığımızda hedef control plane sunucusu (master node) bilgilerini .kube/config dizinine tanımlayacağız
+# Eğer root kullanıcısı ile kubectl komutları çalıştırıyorsak /etc/kubernetes/admin.conf dosyasındaki ayarları kullanabiliriz
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+# kubectl komutlarını çalıştırabileceğimize göre CNI için CALICO'yu yükleyebiliriz
+kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+
+# Artık varsa İŞÇİ DÜĞÜMLERİ (worker node - data plane) control plane ile tanıştırıp k8s kümesine ekleyelim
+# Önce token içeren komutu master node üstünde yaratıp, worker node üstünde çalıştıralım 
+kubeadm token create --print-join-command
+```
+
+```shell
+# !!!! WORKER node komutları !!!!
+# !!!! Yukarıda üretilen TOKEN içeren kodu WORKER NODE üstünde çalıştıracağız !!!!
+sudo kubeadm join ...
+```
+
+```shell
+# MASTER NODE üstünde diğer WORKER NODE tanımlarının eklenip eklenmediğini göstere Status bilgisini görelim
+kubectl get nodes
+
+```
