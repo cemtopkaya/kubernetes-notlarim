@@ -283,6 +283,22 @@ Flannel ve Calico’nun bir kombinasyonu olduğu için, faydaları da bu iki tek
 #### Weave Net
 Weave kümedeki düğümlerin her biri arasında mesh overlay ağı oluşturur ve böylece katılımcılar arasında esnek bir yönlendirme sağlar. Ağını oluşturmak için, Weave ağdaki her ana bilgisayara yüklenen bir yönlendirme bileşenini kullanır. Bu yönlendiriciler daha sonra mevcut ağ ortamının güncel bir görünümünü korumak için topoloji bilgilerini paylaşır. Calico gibi Weave de kümeniz için ağ politikası yetenekleri sağlar. Weave’i kurduğunuzda bu otomatik olarak kurulur ve yapılandırılır.
 
+
+### Flannel Ağ Eklentisini Yüklemek
+
+Master ve worker düğümlerin hepsinde iptables köprü çağrılarını açın:
+
+```shell
+echo "net.bridge.bridge-nf-call-iptables=1" | sudo tee -a /etc/sysctl.conf
+sudo sysctl -p
+```
+
+Yalnızca Kubernetes ana düğümünde Flannel'i yükleyin:
+```shell
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/bc79dd1505b0c8681ece4de4c0d86c5cd2643275/Documentation/kube-flannel.yml
+```
+
+
 ### CALICO Ağ Eklentisini Yüklemek
 
 Aşağıdaki komutu çalıştırdıktan birkaç dakika sonra tekrar k8s düğümlerini listelediğimizde (CALICO'nun aktif olması birkaç dakika alabilir) durumun değiştiğini göreceğiz:
@@ -396,6 +412,7 @@ Kümeye katılım o anda olmayabilir nitekim "Not Ready" ve "Ready" durumundaki 
 
 
 ## Tüm komutların listesi
+
 ```shell
 # containerd için ayar dosyasının oluşturmak ve her sistem başlatıldığında kernelin yükleyeceği modülleri belirtmek:
 cat <<EOF | sudo tee /etc/modules-load.d/containerd.conf
@@ -487,5 +504,4 @@ sudo kubeadm join ...
 ```shell
 # MASTER NODE üstünde diğer WORKER NODE tanımlarının eklenip eklenmediğini göstere Status bilgisini görelim
 kubectl get nodes
-
 ```
