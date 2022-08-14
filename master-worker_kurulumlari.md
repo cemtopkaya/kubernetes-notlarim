@@ -293,6 +293,24 @@ kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 
 ![image](https://user-images.githubusercontent.com/261946/184077215-258dcff0-e6cb-4cc7-a8b9-6c075656763d.png)
 
+Yüklü olan CNI türünü görmek için `kubectl get pods -n kube-system` komutunu çalıştırıyoruz:
+```shell
+cloud_user@k8s-control:~$ kubectl get pods -n kube-system
+NAME                                       READY   STATUS    RESTARTS        AGE
+calico-kube-controllers-555bc4b957-k48sx   1/1     Running   0               51s  << 
+calico-node-9hvnv                          1/1     Running   0               51s  <<
+calico-node-f59w4                          1/1     Running   0               51s  <<
+coredns-6d4b75cb6d-fgxsx                   1/1     Running   0               18m
+coredns-6d4b75cb6d-sdgt9                   1/1     Running   0               18m
+etcd-k8s-control                           1/1     Running   0               19m
+kube-apiserver-k8s-control                 1/1     Running   0               19m
+kube-controller-manager-k8s-control        1/1     Running   0               19m
+kube-proxy-9xj4m                           1/1     Running   0               18m
+kube-proxy-v5zp7                           1/1     Running   0               9m41s
+kube-scheduler-k8s-control                 1/1     Running   0               19m
+```
+
+
 ### Weave Net Ağ Eklentisini Yüklemek
 
 ```shell
@@ -336,8 +354,8 @@ kube-controller-manager-k8s-control   1/1     Running   0             12m
 kube-proxy-9xj4m                      1/1     Running   0             12m
 kube-proxy-v5zp7                      1/1     Running   0             3m11s
 kube-scheduler-k8s-control            1/1     Running   0             12m
-weave-net-przxj                       2/2     Running   1 (86s ago)   96s
-weave-net-wh4k4                       2/2     Running   1 (86s ago)   96s
+weave-net-przxj                       2/2     Running   1 (86s ago)   96s    <<
+weave-net-wh4k4                       2/2     Running   1 (86s ago)   96s    <<
 ```
 
 
