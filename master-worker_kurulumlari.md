@@ -97,6 +97,13 @@ Ayrıca AWS üstünde kurulum yapabilmek için kops veya kubeadm'e alternatif ol
 ![image](https://user-images.githubusercontent.com/261946/184071359-257200b0-81db-4b10-8aa9-74f20fd8372d.png)
 
 containerd'nin çalıştırılabilmesi için bilgisayar her başlatıldığında overlay ve br_netfilter kernel modüllerini yüklenmesi gerekiyor.
+
+NOT (SELINUX için): 
+- Küme iletişimi için br_netfilter modülünü etkinleştirmeyi `modprobe br_netfilter` ile yaparız. 
+- `bridge-nf-call-iptables` değerine 1 veriyoruz. Böylece Kubernetes, IP Tables'ın kurallarını değiştirerek DNS ile Service Discovery yapabilir.
+echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables
+```
+
 Bunu tüm node'lar üstünde yapacağız (master node yerine "control plane", diğer k8s düğümleri için "worker node" deniliyor)
 
 Buna göre /etc/modules-load.d dizinindeki conf dosyalarında belirtilen modüllerin kernel tarafından sistem başlatılırken yüklenmesi istenmiş olur. Bu modüllerin yüklenmesini sistemin tekrar başlatılmasına bırakmamak için aşağıdaki komutunu çalıştıralım:
@@ -201,6 +208,8 @@ Bir k8s kümesinde master (control plane) adı verdiğimiz yönetici düğüm ve
 ![image](https://user-images.githubusercontent.com/261946/184493317-b3212772-0661-40f3-b0e0-ad38350045c5.png)
 
 ## Kubernetes Bileşenleri
+
+![](.vscode/readme-images/2022-08-14-15-36-28.png)
 
 Bir kümede master ve POD'ların çalıştığı düğümler bulunurlar. Ana düğümde tüm k8s elemanları bulunurken diğer düğümlerde sadece 3 bileşen bulunur.
 

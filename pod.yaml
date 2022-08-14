@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox-curl-denetci-pod
+  labels:
+    name: busybox-curl-denetci-pod
+spec:
+  containers:
+  - image: radial/busyboxplus:curl
+    command: sleep 5400
