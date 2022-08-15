@@ -1,17 +1,21 @@
 # Düğümlerin Etiketlerine Uygun POD Çalıştırma
 
 ## Göreviniz
+- Tüm düğümleri listeleyin
 - Tüm düğüm etiketlerini getirin
 - Pod YAML dosyasını disk=ssd etiketli düğümde çalışacak şekilde oluşturun
 - POD'u ayaklandırdığınızda doğru düğümde çalıştığını doğrulayın
 
 ## ÇÖZÜM
 
+### Tüm düğümleri listeleyin
+
 Önce k8s kümesindeki tüm düğümleri listelyelim:
 
 ```shell
 kubectl get nodes 
 ```
+
 
 Aşağıdaki çıktıya göre 1 master 2 worker düğümümüz var. Acaba hangisi disk=ssd etiketiyle etiketlenmiş? 
 
@@ -23,6 +27,8 @@ ip-10-0-1-102   Ready    <none>   17m   v1.18.0
 ip-10-0-1-103   Ready    <none>   17m   v1.18.0
 cloud_user@ip-10-0-1-101:~$
 ```
+
+### Tüm düğümleri etiketleriyle getirin
 
 Düğümleri etiketlerini gösterecek (`--show-labels`) şekilde listeleyelim:
 
@@ -42,7 +48,8 @@ ip-10-0-1-103   Ready    <none>   19m   v1.18.0   beta.kubernetes.io/arch=amd64,
 
 ![](.vscode/readme-images/2022-08-14-15-53-10.png)
 
-### POD'u NodeSelector ile Belirli Bir Worker Node Üstünde Koşturacağız
+
+### Pod YAML dosyasını disk=ssd etiketli düğümde çalışacak şekilde oluşturun
 
 POD'u oluştururken nodeSelector özelliğine etiketin adını ve değerini yazmamız yeterli olacaktır.
 
@@ -62,3 +69,6 @@ EOF
 ```
 
 ![](.vscode/readme-images/2022-08-14-16-17-00.png)
+
+### POD'u ayaklandırdığınızda doğru düğümde çalıştığını doğrulayın
+

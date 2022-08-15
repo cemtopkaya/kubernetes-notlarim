@@ -29,3 +29,22 @@ K8s notlarımı aldığım repo
     - [Weave Net Ağ Eklentisini Yüklemek](master-worker_kurulumlari.md#weave-net-ağ-eklentisini-yüklemek)
   - [Worker Düğümleri Kubernetes Kümesine Eklemek](master-worker_kurulumlari.md#worker-düğümleri-kubernetes-kümesine-eklemek)
   - [Tüm komutların listesi](master-worker_kurulumlari.md#tüm-komutların-listesi)
+
+## Örnekler
+### Servis oluşturma
+- [Yüksek Erişilebilirlik için Servis Oluşturmak](ornek_1_servis_olusturmak.md#yüksek-erişilebilirlik-için-servis-oluşturmak)
+  - [Göreviniz](ornek_1_servis_olusturmak.md#göreviniz)
+  - [ÇÖZÜM](ornek_1_servis_olusturmak.md#çözüm)
+    - [Deployment ile 4 kopya olacak şekilde POD'ları oluşturalım](ornek_1_servis_olusturmak.md#deployment-ile-4-kopya-olacak-şekilde-podları-oluşturalım)
+    - [Servis yaratıp POD'ları altına alalım](ornek_1_servis_olusturmak.md#servis-yaratıp-podları-altına-alalım)
+    - [Sayfanın geldiğini görmek için busybox POD'unu yaratalım](ornek_1_servis_olusturmak.md#sayfanın-geldiğini-görmek-için-busybox-podunu-yaratalım)
+    - [Kaynaklar](ornek_1_servis_olusturmak.md#kaynaklar)
+
+### Node Etiketlerine Göre Dağıtım
+- [Düğümlerin Etiketlerine Uygun POD Çalıştırma](ornek_2_node_etiketlerine_gore_deployment.md#düğümlerin-etiketlerine-uygun-pod-çalıştırma)
+  - [Göreviniz](ornek_2_node_etiketlerine_gore_deployment.md#göreviniz)
+  - [ÇÖZÜM](ornek_2_node_etiketlerine_gore_deployment.md#çözüm)
+    - [Tüm düğümleri listeleyin](ornek_2_node_etiketlerine_gore_deployment.md#tüm-düğümleri-listeleyin)
+    - [Tüm düğümleri etiketleriyle getirin](ornek_2_node_etiketlerine_gore_deployment.md#tüm-düğümleri-etiketleriyle-getirin)
+    - [Pod YAML dosyasını disk=ssd etiketli düğümde çalışacak şekilde oluşturun](ornek_2_node_etiketlerine_gore_deployment.md#pod-yaml-dosyasını-diskssd-etiketli-düğümde-çalışacak-şekilde-oluşturun)
+    - [POD'u ayaklandırdığınızda doğru düğümde çalıştığını doğrulayın](ornek_2_node_etiketlerine_gore_deployment.md#podu-ayaklandırdığınızda-doğru-düğümde-çalıştığını-doğrulayın)

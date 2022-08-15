@@ -101,6 +101,7 @@ containerd'nin çalıştırılabilmesi için bilgisayar her başlatıldığında
 NOT (SELINUX için): 
 - Küme iletişimi için br_netfilter modülünü etkinleştirmeyi `modprobe br_netfilter` ile yaparız. 
 - `bridge-nf-call-iptables` değerine 1 veriyoruz. Böylece Kubernetes, IP Tables'ın kurallarını değiştirerek DNS ile Service Discovery yapabilir.
+
 ```shell
 echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables
 ```
