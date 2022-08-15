@@ -100,6 +100,15 @@ k apply -f prod.yaml
 ```
 
 
+### Her POD'un tanıma uygun olarak ilgili düğümlerde çalıştığını doğrulayın
+
+```shell
+cloud_user@ip-10-0-1-101:~$ k get pods -o wide
+NAME                    READY   STATUS    RESTARTS   AGE     IP           NODE            NOMINATED NODE   READINESS GATES
+dev-pod                 1/1     Running   0          2m13s   10.244.2.2   ip-10-0-1-102   <none>           <none>
+prod-7654d444bc-n9z8n   1/1     Running   0          75s     10.244.1.2   ip-10-0-1-103   <none>           <none>
+```
+
 ### prod Ortamında çalışacak POD'un kopya sayısını arttırın ve tüm kopyaların ilgili ortamda çalıştığını doğrulayın
 
 ```shell
@@ -112,15 +121,6 @@ dev-pod                 1/1     Running   0          3m47s   10.244.2.2   ip-10-
 prod-7654d444bc-4k9xd   1/1     Running   0          18s     10.244.1.3   ip-10-0-1-103   <none>           <none>
 prod-7654d444bc-g9zbk   1/1     Running   0          18s     10.244.2.3   ip-10-0-1-102   <none>           <none>
 prod-7654d444bc-n9z8n   1/1     Running   0          2m49s   10.244.1.2   ip-10-0-1-103   <none>           <none>
-```
-
-### Her POD'un tanıma uygun olarak ilgili düğümlerde çalıştığını doğrulayın
-
-```shell
-cloud_user@ip-10-0-1-101:~$ k get pods -o wide
-NAME                    READY   STATUS    RESTARTS   AGE     IP           NODE            NOMINATED NODE   READINESS GATES
-dev-pod                 1/1     Running   0          2m13s   10.244.2.2   ip-10-0-1-102   <none>           <none>
-prod-7654d444bc-n9z8n   1/1     Running   0          75s     10.244.1.2   ip-10-0-1-103   <none>           <none>
 ```
 
 ![](.vscode/readme-images/2022-08-14-19-50-15.png)
