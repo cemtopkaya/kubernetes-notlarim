@@ -79,8 +79,7 @@ kubectl expose deployment kubeserve --port 80 --target-port 80 --type NodePort
 kubectl get services
 ```
 
-![](.vscode/readme-images/2022-08-14-21-58-21.png)
-![](.vscode/readme-images/2022-08-15-08-22-52.png)
+![image](https://user-images.githubusercontent.com/261946/184582581-841b830d-fdcb-43c8-b4b9-166cbe7225db.png)
 
 ## Uygulamanın yeni sürümüne güncelleme yapın. 
 
