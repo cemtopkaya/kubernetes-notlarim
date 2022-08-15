@@ -98,7 +98,7 @@ kubectl set image deployments/kubeserve app=linuxacademycontent/kubeserve:v2 --v
 ```
 ![image](https://user-images.githubusercontent.com/261946/184582935-ebf111d3-8c3c-49c6-a6cd-33f658eb3b8c.png)
 
-![](.vscode/readme-images/2022-08-15-08-25-04.png)
+![image](https://user-images.githubusercontent.com/261946/184583103-fd5e9579-010e-49e9-81f6-e728b90ab24a.png)
 
 Kesinti olmaksızın 2. sürüme geçildiği görülür:
 
@@ -111,10 +111,10 @@ kubectl get replicasets
 kubectl get pods
 ```
 
-![](.vscode/readme-images/2022-08-15-08-26-30.png)
+![image](https://user-images.githubusercontent.com/261946/184583291-7308a4df-1209-4c80-824e-b2094d1602b5.png)
 
 ```shell
 kubectl rollout history deployment kubeserve
 ```
 
-![](.vscode/readme-images/2022-08-15-08-27-25.png)
+![image](https://user-images.githubusercontent.com/261946/184583186-622418f9-cd38-439e-b779-3dff57cab255.png)
