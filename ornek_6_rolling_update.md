@@ -86,23 +86,23 @@ kubectl get services
 Öncelikle sanki sürekli ziyaretçi geliyormuş gibi farklı bir konsolda döngü içinde curl istekleri atalım:
 
 ```shell
-while true; do curl http://10.98.42.33; done
-
+while true; do curl http://10.101.57.20; sleep 1; done
 ```
 
-![](.vscode/readme-images/2022-08-15-08-23-20.png)
+![image](https://user-images.githubusercontent.com/261946/184582665-5938536b-b2db-4826-ae9d-a7fa907ced66.png)
 
 Diğer tarafta ise versiyonu güncellemek isteyelim:
 
 ```shell
 kubectl set image deployments/kubeserve app=linuxacademycontent/kubeserve:v2 --v 6
 ```
+![image](https://user-images.githubusercontent.com/261946/184582935-ebf111d3-8c3c-49c6-a6cd-33f658eb3b8c.png)
 
 ![](.vscode/readme-images/2022-08-15-08-25-04.png)
 
 Kesinti olmaksızın 2. sürüme geçildiği görülür:
 
-![](.vscode/readme-images/2022-08-15-08-24-24.png)
+![image](https://user-images.githubusercontent.com/261946/184582882-1f1fd365-be60-4f77-b243-2e7f1c27c30a.png)
 
 ## Uygulamanın şimdiki sürümünün 2. sürüm olduğunu ve son kullanıcılar için herhangi bir kesinti olmadığını doğrulayın.
 
