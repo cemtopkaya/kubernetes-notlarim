@@ -1,6 +1,8 @@
-# kubernetes-notlarim
+# Kubernetes (k8s) Notlarım
 K8s notlarımı aldığım repo
 
+
+- [Sorunlar ve Çözümleri](sorun-giderme-troubleshooting.md)
 - [Kubernetes, etrafındaki terimler ve ilişkileri, kurulumlar](master-worker_kurulumlari.md#kubernetes-etrafındaki-terimler-ve-ilişkileri-kurulumlar)
   - [Kubernetes ve Docker İlişkisi](master-worker_kurulumlari.md#kubernetes-ve-docker-i̇lişkisi)
       - [Docker Nedir?](master-worker_kurulumlari.md#docker-nedir)
