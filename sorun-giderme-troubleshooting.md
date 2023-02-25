@@ -4,6 +4,8 @@
 #### Çözüm
 İçinde doğru yapılandırmaya sahip bir .kube dizininin olmamasıdır. `/etc/kubernetes/admin.conf` dosyasını kullanıcının ev dizininde `.kube` adında bir dizin yaratarak içine kopyalayalım.
 
+Ref: https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/
+
 ```shell
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
