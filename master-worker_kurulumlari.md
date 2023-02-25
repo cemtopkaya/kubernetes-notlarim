@@ -28,7 +28,11 @@ Linux ip-10-0-0-100 5.4.0-1045-aws #47~18.04.1-Ubuntu SMP Tue Apr 13 15:58:14 UT
 
 ![image](https://user-images.githubusercontent.com/261946/221383305-282bf9e6-b35d-45db-97f9-6c35c71f9313.png)
 
-> Listeleyelim yansıları ve hepsinden bir konteyner yaratıp konteyner içinde `uname -a` çalıştıralım:
+> Listeleyelim yansıları 
+
+![image](https://user-images.githubusercontent.com/261946/221383630-c648610c-4c2b-4a97-a4b0-c6bce225445b.png)
+
+> ve hepsinden bir konteyner yaratıp konteyner içinde `uname -a` çalıştıralım:
 ```shell
 $ ctr run --rm -t docker.io/library/ubuntu:bionic ccc-ubuntu uname -a
 ```
