@@ -27,6 +27,7 @@ Linux ip-10-0-0-100 5.4.0-1045-aws #47~18.04.1-Ubuntu SMP Tue Apr 13 15:58:14 UT
 $ ctr run --rm -t docker.io/library/ubuntu:bionic ccc-ubuntu uname -a
 ```
 
+Ev sahibi işletim sisteminde `18.04` kurulu ve kernel sürümü `5.4.0-1045-aws`. Konteynerlerin de aynı kerneli kullandığını aşağıdaki konteyner içinde çalışan `uname -a` komutuyla görebiliriz.
 ![image](https://user-images.githubusercontent.com/261946/221383547-f1be2733-aa97-4a9e-81e2-78532d8c1a0f.png)
 
 ## Ubuntu Sürümlerinin Kernel Sürümleri
