@@ -28,3 +28,11 @@ $ ctr run --rm -t docker.io/library/ubuntu:bionic ccc-ubuntu uname -a
 ```
 
 ![image](https://user-images.githubusercontent.com/261946/221383547-f1be2733-aa97-4a9e-81e2-78532d8c1a0f.png)
+
+## Ubuntu Sürümlerinin Kernel Sürümleri
+
+![image](https://user-images.githubusercontent.com/261946/221505596-a595926b-7a51-4bb2-9a2e-b0da4a72f058.png)
+
+![image](https://user-images.githubusercontent.com/261946/221505846-afe055c3-33b1-496a-9dad-1b1bbeecb74c.png)
+
+
