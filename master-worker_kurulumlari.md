@@ -4,17 +4,21 @@ Docker en eski platformlardan olduğu için tıpkı selpak ile peçete ayrımı 
 Aralarındaki ilişkileri anlamak için farklarını ortaya koyarak başlayalım.
 
 ## Kubernetes ve Docker İlişkisi
+Önce etrafınızda dönüp dolaşan terimlerin ilişkilerini öğrenelim.
 
 #### Docker Nedir?
 
-Bir sanal makine, eksiksiz bir işletim sistemi içerirken, bir konteyner ise üstünde çalıştığı işletim sisteminin çekirdeğine erişir. Yani bir konteynerin ev sahibi işletim sistemiyle arasındaki TEK ORTAK NOKTA ev sahibi bilgisayarın kernelini konteynerin kullanmasıdır. İncelemesini [bu bağlantıdan](host-container-aynı-kerneli-kullanır.md) inceleyebilirsiniz.
+![image](https://user-images.githubusercontent.com/261946/221484635-098121cc-f26c-4c9f-bf39-4469eaa23dfe.png)
 
+**Konteyner** bir işletim sisteminde yani bir bilgisayarda çalışır. Konteyner içinde çalışan uygulamaların konteynerin bulunduğu bilgisayarın işletim sisteminden izole koşabilmesi için kullanılan yalıtıma konteyner diyoruz.
 
-Önce etrafınızda dönüp dolaşan terimlerin ilişkilerini öğrenelim.
+**Docker**, bilgisayar içinde çalışan konteynerlerin işletim sistemine erişimini sağlayan *dosya biçimidir*. Bu süreci işletmek için docker, bir bilgisayara kurulur ve geliştirici veya DevOps çalışanının konteynerleri oluşturup çalıştırmasını kolaylaştıran bir dizi uygulamaları yanı sıra getirir.
+
+Bir sanal makine, eksiksiz bir işletim sistemi içerirken, bir konteyner ise üstünde çalıştığı işletim sisteminin çekirdeğine erişir. Yani bir konteyner ile ev sahibi işletim sistemiyle arasındaki TEK ORTAK NOKTA konteynerin, ev sahibi bilgisayarın kernelini kullanmasıdır. İncelemesini [bu bağlantıdan](host-container-aynı-kerneli-kullanır.md) inceleyebilirsiniz.
+
 
 ![image](https://user-images.githubusercontent.com/261946/184497455-811e22da-566b-413b-97b0-a12d09c062b8.png)
 
-**Docker**, şirket içinde veya bulutta barınan konteynerleri otomatikleştirmeyi sağlayan, içinde çalışan uygulamalar için işletim sistemini de kapsayan dosya biçimidir. Bu süreci işletmek için docker, bir iş istasyonuna veya sunucuya kurulacak şekilde tasarlanmıştır ve bir geliştirici veya DevOps çalışanı olarak kapsayıcıları oluşturmayı ve çalıştırmayı kolaylaştıran bir dizi araçla birlikte gelir.
 
 Docker komut satırı aracı, konteynerlerin kalıplarını (image) oluşturabilir, bunları kayıtlı oldukları havuzlardan (https://hub.docker.com/ gibi) çekebilir, konteynerleri oluşturabilir, başlatabilir ve yönetebilir.
 
