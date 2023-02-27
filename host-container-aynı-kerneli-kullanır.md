@@ -1,4 +1,5 @@
-##### Host ve Konteyner Aynı Kernel'i Kullanıyor
+# Host ve Konteyner'in Ortak Tek Noktası Aynı Kernel'i Kullanmalarıdır
+
 > Host işletim sisteminizi öğrenmek için `uname -a` komutunu çalıştırın ve kernel sürümünü öğrenin.
 ```shell
 $ cat /etc/lsb-release
