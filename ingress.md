@@ -1,4 +1,4 @@
-# GİRİŞ
+# GİRİŞ (INGRESS)
 Kubernetes Ingress nesnesi, bir küme içindeki hizmetlere harici erişimi yönetmek için kullanılan bir kaynaktır. Tipik olarak Giriş kaynakları, HTTP(S) yollarını ortaya çıkarmak için kullanılır. Bir Giriş kaynağı aşağıdakilerden herhangi birini sağlayabilir:
 
 * Yük dengeleme
