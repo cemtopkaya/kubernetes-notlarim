@@ -31,6 +31,7 @@ K8s notlarımı aldığım repo
     - [Weave Net Ağ Eklentisini Yüklemek](master-worker_kurulumlari.md#weave-net-ağ-eklentisini-yüklemek)
   - [Worker Düğümleri Kubernetes Kümesine Eklemek](master-worker_kurulumlari.md#worker-düğümleri-kubernetes-kümesine-eklemek)
   - [Tüm komutların listesi](master-worker_kurulumlari.md#tüm-komutların-listesi)
+- [Giriş (ingress)](ingress.md)
 
 ## Örnekler
 ### Servis oluşturma
