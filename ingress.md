@@ -6,6 +6,9 @@ Kubernetes Ingress nesnesi, bir küme içindeki hizmetlere harici erişimi yöne
 * HTTP Sanal Barındırma (bir istekte alan adına göre yönlendirme)
 * HTTP URL yolu tabanlı yönlendirme
 
+Yük Dengeleyici'nin En Üstten Görünümü:
+![image](https://user-images.githubusercontent.com/261946/230696683-cbfaf67c-b9d4-4e31-8e9d-d19e43654648.png)
+
 Bir giriş (ingress) kaynağının kullanılması, bir giriş Denetleyicisinin Kubernetes kümesine yüklenmesini ve çalışmasını gerektirir. 
 Birçok [ingress denetleyicisi](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/#additional-controllers) türü vardır. 
 
