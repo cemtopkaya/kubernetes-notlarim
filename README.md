@@ -32,6 +32,8 @@ K8s notlarımı aldığım repo
   - [Worker Düğümleri Kubernetes Kümesine Eklemek](master-worker_kurulumlari.md#worker-düğümleri-kubernetes-kümesine-eklemek)
   - [Tüm komutların listesi](master-worker_kurulumlari.md#tüm-komutların-listesi)
 - [Giriş (ingress)](ingress.md)
+- [StatefulSet](statefulset.md)
+  - [Basit bir statefulset örneği](statefulset.md#basit-bir-statefulset-örneği)
 
 ## Örnekler
 ### Servis oluşturma
