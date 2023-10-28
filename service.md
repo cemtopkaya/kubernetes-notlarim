@@ -1,5 +1,9 @@
 # Kubernetes Servisleri
 
+![image](https://github.com/cemtopkaya/kubernetes-notlarim/assets/261946/557b1bcf-f49b-4d60-ae4a-be36c510eb68)
+
+## Neden Servisleri Kullanmalıyız?
+
 Hizmetler (Services), Kubernetes içinde önemli bir rol oynar ve pod'ların birbirlerine erişmesini daha kolay ve güvenilir hale getirir. 
 Ancak hizmetler olmadan pod'lar arasındaki iletişim bazı sınırlamalarla karşılaşabilir:
 
@@ -12,4 +16,3 @@ Sonuç olarak, hizmetler olmadan pod'lar birbirlerine erişebilirler, ancak bu i
 Hizmetler, pod'lar arasındaki iletişimi basitleştirir, yük dengelemesini yönetir ve dinamik IP değişiklikleri ile başa çıkar. 
 Bu nedenle, Kubernetes kullanırken hizmetleri pod'lar arasındaki iletişimi kolaylaştırmak için tercih etmek genellikle daha iyi bir uygulamadır.
 
-![image](https://github.com/cemtopkaya/kubernetes-notlarim/assets/261946/557b1bcf-f49b-4d60-ae4a-be36c510eb68)
