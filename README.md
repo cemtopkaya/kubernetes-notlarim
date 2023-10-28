@@ -35,6 +35,7 @@ K8s notlarımı aldığım repo
 
 ## Örnekler
 ### Servis oluşturma
+- [Servisler Neden Gereklidir?](service.md#neden-servisleri-kullanmalıyız)
 - [Yüksek Erişilebilirlik için Servis Oluşturmak](ornek_1_servis_olusturmak.md#yüksek-erişilebilirlik-için-servis-oluşturmak)
   - [Göreviniz](ornek_1_servis_olusturmak.md#göreviniz)
   - [ÇÖZÜM](ornek_1_servis_olusturmak.md#çözüm)
