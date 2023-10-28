@@ -34,6 +34,7 @@ K8s notlarımı aldığım repo
 - [Giriş (ingress)](ingress.md)
 - [StatefulSet](statefulset.md)
   - [Basit bir statefulset örneği](statefulset.md#basit-bir-statefulset-örneği)
+- [Kalıcı Depolama Birimi ve Talebi (PV & PVC)](pv_pvc.md#persistent-volume-kalıcı-depolama-birimi-ve-persistent-volume-claim-kalıcı-depolama-talebi)
 
 ## Örnekler
 ### Servis oluşturma
