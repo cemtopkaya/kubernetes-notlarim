@@ -15,6 +15,8 @@ Network Policy, Kubernetes'teki birçok ağ uygulamasında kullanışlıdır ve 
 
 ![image](https://github.com/cemtopkaya/kubernetes-notlarim/assets/261946/621e71ad-115c-4fb7-8166-d0faf21dcf28)
 
+![image](https://github.com/cemtopkaya/kubernetes-notlarim/assets/261946/0bf3f786-13be-4812-adf8-d3698643f659)
+
 İşte basit bir Network Policy YAML örneği:
 
 ```yaml
