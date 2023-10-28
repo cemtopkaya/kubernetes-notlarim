@@ -8,6 +8,10 @@ Aralarındaki ilişkileri anlamak için farklarını ortaya koyarak başlayalım
 
 #### Docker Nedir?
 
+![LXC](https://github.com/cemtopkaya/kubernetes-notlarim/assets/261946/a727d693-08b5-4935-b4bd-f68c7e2f6b82)
+
+[Türkçe anlatımlı güzel bir Docker videosu](https://www.youtube.com/watch?v=4XVfmGE1F_w&ab_channel=kablosuzkedi)
+
 ![image](https://user-images.githubusercontent.com/261946/221484635-098121cc-f26c-4c9f-bf39-4469eaa23dfe.png)
 
 **Konteyner** bir işletim sisteminde yani bir bilgisayarda çalışır. Konteyner içinde çalışan uygulamaların konteynerin bulunduğu bilgisayarın işletim sisteminden izole koşabilmesi için kullanılan yalıtıma konteyner diyoruz.
