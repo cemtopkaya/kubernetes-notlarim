@@ -56,3 +56,16 @@ K8s notlarımı aldığım repo
     - [Tüm düğümleri etiketleriyle getirin](ornek_2_node_etiketlerine_gore_deployment.md#tüm-düğümleri-etiketleriyle-getirin)
     - [Pod YAML dosyasını disk=ssd etiketli düğümde çalışacak şekilde oluşturun](ornek_2_node_etiketlerine_gore_deployment.md#pod-yaml-dosyasını-diskssd-etiketli-düğümde-çalışacak-şekilde-oluşturun)
     - [POD'u ayaklandırdığınızda doğru düğümde çalıştığını doğrulayın](ornek_2_node_etiketlerine_gore_deployment.md#podu-ayaklandırdığınızda-doğru-düğümde-çalıştığını-doğrulayın)
+
+
+# Bir Göç Nasıl Planlanır
+
+![image](https://github.com/cemtopkaya/kubernetes-notlarim/assets/261946/b2144539-7279-4b5d-8b58-64fed996c290)
+
+![image](https://github.com/cemtopkaya/kubernetes-notlarim/assets/261946/d160eb2d-0243-4716-aa4e-c0d2b8952207)
+
+![image](https://github.com/cemtopkaya/kubernetes-notlarim/assets/261946/487c2fef-e0d0-43d5-95ee-4af85e6b5c87)
+
+![image](https://github.com/cemtopkaya/kubernetes-notlarim/assets/261946/e4525256-c547-4320-a232-c0334daa3d13)
+
+
