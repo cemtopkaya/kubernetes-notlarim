@@ -1,10 +1,6 @@
 # Docker Ağ Nasıl Çalışır
 
 Elimde bir ubuntu 16.04 WSL ve içinde çalışan docker hizmetim var. 
-Bir konteyner çalışmıyor, bir ağ yaratılmamış ve `iptables -S` çıktısı şöyle:
-
-![image](https://github.com/cemtopkaya/kubernetes-notlarim/assets/261946/882a8ccd-c374-4804-8b53-fe92f6c9676f)
-
 Aşağıdaki iptables komutunun yardım çıkları biraz daha aşağıda oluşturulan kuralları anlamamızı sağlayacak:
 ```bash
 --policy  -P chain target              Change policy on chain to target
@@ -15,6 +11,57 @@ Aşağıdaki iptables komutunun yardım çıkları biraz daha aşağıda oluştu
 [!] --in-interface -i input name[+]    network interface name ([+] for wildcard)
 --match       -m match                 extended match (may load extension)
 ```
+
+Bir konteyner çalışmıyor, bir ağ yaratılmamış ve `iptables -S` çıktısı şöyle:
+```shell
+[14:05:54] cemt:cem.topkaya $ sudo iptables -S
+-P INPUT ACCEPT
+-P FORWARD DROP
+-P OUTPUT ACCEPT
+-N DOCKER
+-N DOCKER-ISOLATION-STAGE-1
+-N DOCKER-ISOLATION-STAGE-2
+-N DOCKER-USER
+-A FORWARD -j DOCKER-USER
+-A FORWARD -j DOCKER-ISOLATION-STAGE-1
+-A FORWARD -o docker0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+-A FORWARD -o docker0 -j DOCKER
+-A FORWARD -i docker0 ! -o docker0 -j ACCEPT
+-A FORWARD -i docker0 -o docker0 -j ACCEPT
+-A DOCKER-ISOLATION-STAGE-1 -i docker0 ! -o docker0 -j DOCKER-ISOLATION-STAGE-2
+-A DOCKER-ISOLATION-STAGE-1 -j RETURN
+-A DOCKER-ISOLATION-STAGE-2 -o docker0 -j DROP
+-A DOCKER-ISOLATION-STAGE-2 -j RETURN
+-A DOCKER-USER -j RETURN
+```
+
+Bu `sudo iptables -S` komutunun çıktısı, iptables kurallarını gösterir ve Docker ile ilgili özelleştirilmiş kuralları içerir. Aşağıda bu çıktıdaki önemli bölümlerin açıklamalarını bulabilirsiniz:
+
+1. `-P INPUT ACCEPT`: Bu satır, "INPUT" zincirinin varsayılan politikasını belirtir. "ACCEPT" olarak ayarlandığı için, gelen trafik varsayılan olarak kabul edilir.
+2. `-P FORWARD DROP`: Bu satır, "FORWARD" zincirinin varsayılan politikasını belirtir. "DROP" olarak ayarlandığı için, "FORWARD" zincirine gelen trafik varsayılan olarak reddedilir. Bu, host makinesinden geçip başka bir ağ arabirimine yönlendirilen trafik için önemlidir.
+3. `-P OUTPUT ACCEPT`: Bu satır, "OUTPUT" zincirinin varsayılan politikasını belirtir. "ACCEPT" olarak ayarlandığı için, host makinesinden giden trafik varsayılan olarak kabul edilir.
+4. Bu satırlar, özel iptables zincirlerini tanımlar. Docker ve Docker izolasyonu için kullanılan özel zincirlerdir.
+```shell
+-N DOCKER
+-N DOCKER-ISOLATION-STAGE-1
+-N DOCKER-ISOLATION-STAGE-2
+-N DOCKER-USER
+```
+5. `-A FORWARD -j DOCKER-USER`: Bu satır, "FORWARD" zincirine gelen trafik için "DOCKER-USER" zincirine yönlendirme yapar.
+6. `-A FORWARD -j DOCKER-ISOLATION-STAGE-1`: Bu satır, "FORWARD" zincirine gelen trafik için "DOCKER-ISOLATION-STAGE-1" zincirine yönlendirme yapar.
+7. `-A FORWARD -o docker0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT`: Bu satır, Docker köprü ağı üzerinden geçen trafik için tanımlanmış bir kuraldır. Bu kural, ilişkili veya kurulmuş bağlantıları kabul eder.
+8. `-A FORWARD -o docker0 -j DOCKER`: Bu satır, Docker köprü ağına yönlendirilen trafik için "DOCKER" zincirine yönlendirme yapar.
+9. `-A FORWARD -i docker0 ! -o docker0 -j ACCEPT`: Bu satır, Docker köprü ağından gelen ve Docker köprü ağına gitmeyen trafik için kabul edilme kuralıdır.
+10. `-A FORWARD -i docker0 -o docker0 -j ACCEPT`: Bu satır, Docker köprü ağından gelen ve Docker köprü ağına yönlendirilen trafik için kabul edilme kuralıdır.
+11. `-A DOCKER-ISOLATION-STAGE-1 -i docker0 ! -o docker0 -j DOCKER-ISOLATION-STAGE-2`: Bu satır, Docker izolasyonunun ilk aşamasını temsil eder. Docker konteynerleri arasındaki iletişimi sınırlayan bir kuraldır. İlk aşamadan geçmeyen trafik, "DOCKER-ISOLATION-STAGE-2" zincirine yönlendirilir.
+12. `-A DOCKER-ISOLATION-STAGE-1 -j RETURN`: Bu satır, "DOCKER-ISOLATION-STAGE-1" zincirine gelen trafik için bir "RETURN" kuralıdır.
+13. `-A DOCKER-ISOLATION-STAGE-2 -o docker0 -j DROP`: Bu satır, Docker izolasyonunun ikinci aşamasını temsil eder. Bu kural, Docker köprü ağına yönlendirilen trafik için bir düşürme (DROP) kuralıdır.
+14. `-A DOCKER-ISOLATION-STAGE-2 -j RETURN`: Bu satır, "DOCKER-ISOLATION-STAGE-2" zincirine gelen trafik için bir "RETURN" kuralıdır.
+15. `-A DOCKER-USER -j RETURN`: Bu satır, "DOCKER-USER" zincirine gelen trafik için bir "RETURN" kuralıdır.
+
+Bu iptables kuralları, Docker'ın ağ yönlendirmesi ve izolasyonunu sağlamak için kullanılan özelleştirilmiş kuralları içerir. Bu kurallar, gelen ve giden trafik yönlendirmesi, Docker konteynerler arası izolasyon ve ağ güvenliği için tasarlanmıştır.
+
+![image](https://github.com/cemtopkaya/kubernetes-notlarim/assets/261946/882a8ccd-c374-4804-8b53-fe92f6c9676f)
 
 Bu çıktı, Docker'ın ağ yönlendirmesi ve izolasyonu için kullanılan iptables kurallarını gösteriyor. İşte bu çıktıdaki önemli bölümlerin açıklamaları:
 
