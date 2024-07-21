@@ -4,7 +4,7 @@
 - https://learn.microsoft.com/tr-tr/azure/aks/istio-about
 - [Neden docker'dan kubernetes'e geçiyoruz](https://youtu.be/H1d8Wwx4vkI?si=_BpjhgoZhZEhSIRz&t=258)
 - [Neden istio'ya ihtiyacımız var?](https://youtu.be/H1d8Wwx4vkI?si=lk4rNRhsmBnP1usk&t=390)
-- 
+- [Traffic mirroring, also called shadowing](https://youtu.be/H1d8Wwx4vkI?si=xRg7CkVrqm8u-4DK&t=1482)
 
 # Service Mesh ne yapar?
 
@@ -72,7 +72,7 @@ Istio gibi bir servis mesh, mikro hizmetlerin yönetimini kolaylaştırır, güv
    - **Katman:** OSI modelinin 7. katmanı (uygulama katmanı).
    - **Özellikleri:** Envoy, her podun içine yerleştirilen bir sidecar proxy olarak çalışır. Tüm pod trafiği bu proxy üzerinden geçer, bu da uygulama kodunda değişiklik yapmadan Istio'nun devreye girmesini sağlar. Gelen istekleri inceleyebilir ve içeriklerine göre kararlar alabilir.
 
-**2. Pilot**
+**2. [Pilot](https://youtu.be/H1d8Wwx4vkI?si=QmKO2Z-IduZOZiJk&t=1713)**
    - **Görevleri:** Proxy'lere konfigürasyon gönderir, servis keşfi sağlar, akıllı yönlendirme ve dayanıklılık sağlar. Istio Pilot, Istio Service Mesh içinde trafik yönetimi, güvenlik, politika yönetimi ve gözlemlenebilirlik gibi önemli işlevleri yerine getirerek, mikroservis mimarilerinin yönetimini kolaylaştırır. Bu, geliştiricilerin uygulamalarını daha güvenli ve verimli bir şekilde yönetmelerine olanak tanır.
    - **Özellikleri:** Pilot, sağlık kontrolleri ve kullanılabilir podlar hakkında bilgi alarak, istekleri uygun podlara yönlendirir. Bu, uygulamanın daha verimli çalışmasını sağlar.
    - Istio Pilot, temel olarak aşağıdaki işlevleri yerine getirir:
