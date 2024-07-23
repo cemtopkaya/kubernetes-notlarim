@@ -77,7 +77,7 @@ PersistentVolumes provide a way to treat storage as a dynamic resource in Kubern
 2.  Pod manifest file:
 
 
-    ```
+```
 apiVersion: v1
 kind: Pod
 metadata:
@@ -95,7 +95,7 @@ spec:
      volumeMounts:
      - name: pv-storage
        mountPath: /output
-    ```
+```
 
 3.  Define the Pod by using:
 
