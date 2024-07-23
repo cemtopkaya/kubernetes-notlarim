@@ -4,14 +4,6 @@
 
 PersistentVolumes provide a way to treat storage as a dynamic resource in Kubernetes. This lab will allow you to demonstrate your knowledge of PersistentVolumes. You will mount some persistent storage to a container using a PersistentVolume and a PersistentVolumeClaim.
 
-## Solution
-
-Log in to the server using the credentials provided:
-
-```
-ssh cloud_user@<PUBLIC_IP_ADDRESS>
-```
-
 ### Create a PersistentVolume That Allows Claim Expansion
 
 1.  Create a custom Storage Class by using `vi localdisk.yml`.
