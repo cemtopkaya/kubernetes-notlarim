@@ -4,11 +4,29 @@
 
 PersistentVolumes provide a way to treat storage as a dynamic resource in Kubernetes. You will mount some persistent storage to a container using a PersistentVolume and a PersistentVolumeClaim.
 
+### Kısa Yoldan: Tümünü Kustomization İle Çalıştırmak
+
 `kustomization.yaml` Dosyası içinde istenilen sıralarda hangi manifesto dosyalarının çalıştırılacağını [kustomization](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/) ile  istenilen sırada yaratmayı sağlar.
 
 ```sh
 kubectl apply -k .
 ```
+
+Aynı şekilde tüm kaynakları silmek için:
+```sh
+kubectl delete -k .
+
+# veya
+
+kubectl delete --kustomize .
+```
+
+![image](https://github.com/user-attachments/assets/81c5b0b0-e2a7-46ad-9437-0c8d802cf887)
+
+Tüm dosyaları görüntülemek için `kubectl kustomize` komutunu çalıştıralım:
+
+![image](https://github.com/user-attachments/assets/274f00f0-2102-4628-9705-1a9972f9af16)
+
 
 ### Create a PersistentVolume That Allows Claim Expansion
 
