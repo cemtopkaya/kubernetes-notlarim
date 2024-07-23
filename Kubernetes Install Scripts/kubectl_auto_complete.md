@@ -1,7 +1,18 @@
 ### Kubectl Autocomplete
 
+#### Tümü
+
 ```sh
 apt-get install bash-completion
+```
+
+#### Ayrı ayrı
+
+```sh
+apt-get install bash-completion
+kubectl completion bash | sudo tee /etc/bash_completion.d/kubectl > /dev/null
+echo 'alias k=kubectl' >>~/.bashrc
+echo 'complete -o default -F __start_kubectl k' >>~/.bashrc
 ```
 
 veya 
@@ -17,6 +28,7 @@ kubectl completion bash | sudo tee /etc/bash_completion.d/kubectl > /dev/null
 ```
 
 Tekrar login olunca `kubectl -` yazıp tab tuşuna basınca çıktı şu şekilde gelecek:
+
 ![image](https://github.com/user-attachments/assets/95f31ccc-1d29-4d4f-b90d-a2680c737f3b)
 
 
