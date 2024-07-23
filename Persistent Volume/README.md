@@ -74,7 +74,30 @@ PersistentVolumes provide a way to treat storage as a dynamic resource in Kubern
 ### Create a Pod That Uses a PersistentVolume for Storage
 
 1.  Create a Pod that uses the PersistentVolumeClaim by using `vi pv-pod.yml`.
-2.  Define the Pod by using:
+2.  Pod manifest file:
+
+
+    ```
+apiVersion: v1
+kind: Pod
+metadata:
+   name: pv-pod
+spec:
+   volumes:
+   - name: pv-storage
+     persistentVolumeClaim:
+       claimName: host-pvc
+
+   containers:
+   - name: busybox
+     image: busybox
+     command: ['sh', '-c', 'while true; do echo Success! > /output/success.txt; sleep 5; done']
+     volumeMounts:
+     - name: pv-storage
+       mountPath: /output
+    ```
+
+3.  Define the Pod by using:
 
     ```
     apiVersion: v1
@@ -88,7 +111,7 @@ PersistentVolumes provide a way to treat storage as a dynamic resource in Kubern
             command: ['sh', '-c', 'while true; do echo Success! > /output/success.txt; sleep 5; done']
     ```
 
-3.  Mount the PersistentVolume to the /output location by adding the following, which should be level with the `containers` spec in terms of indentation:
+4.  Mount the PersistentVolume to the /output location by adding the following, which should be level with the `containers` spec in terms of indentation:
 
     ```
     volumes:
@@ -97,7 +120,7 @@ PersistentVolumes provide a way to treat storage as a dynamic resource in Kubern
            claimName: host-pvc
     ```
 
-4.  In the `containers` spec, below the `command`, set the list of volume mounts by using:
+5.  In the `containers` spec, below the `command`, set the list of volume mounts by using:
 
     ```
     volumeMounts:
@@ -105,7 +128,7 @@ PersistentVolumes provide a way to treat storage as a dynamic resource in Kubern
         mountPath: /output
     ```
 
-5.  Save and exit the file by hitting the ESC key and using `:wq`.
-6.  Finish creating the Pod by using `kubectl create -f pv-pod.yml`.
-7.  Check that the Pod is up and running by using `kubectl get pods`.
-8.  If you wish, you can log in to the worker node and verify the output data by using `cat /var/output/success.txt`.
+6.  Save and exit the file by hitting the ESC key and using `:wq`.
+7.  Finish creating the Pod by using `kubectl create -f pv-pod.yml`.
+8.  Check that the Pod is up and running by using `kubectl get pods`.
+9.  If you wish, you can log in to the worker node and verify the output data by using `cat /var/output/success.txt`.
