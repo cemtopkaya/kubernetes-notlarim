@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+   name: pv-pod
+spec:
+   volumes:
+   - name: pv-storage
+     persistentVolumeClaim:
+       claimName: host-pvc
+
+   containers:
+   - name: busybox
+     image: busybox
+     command: ['sh', '-c', 'while true; do echo Success! > /output/success.txt; sleep 5; done']
+     volumeMounts:
+     - name: pv-storage
+       mountPath: /output
