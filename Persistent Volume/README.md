@@ -18,6 +18,8 @@ PersistentVolumes provide a way to treat storage as a dynamic resource in Kubern
     allowVolumeExpansion: true
     ```
 
+    ![image](https://github.com/user-attachments/assets/bedfb313-e6b9-430e-8a42-ab66c1216e88)
+
 3.  Save and exit the file by hitting the ESC key and using `:wq`.
 4.  Finish creating the Storage Class by using `kubectl create -f localdisk.yml`.
 5.  Create the PersistentVolume by using `vi host-pv.yml`.
@@ -38,6 +40,8 @@ PersistentVolumes provide a way to treat storage as a dynamic resource in Kubern
        hostPath:
           path: /var/output
     ```
+
+    ![image](https://github.com/user-attachments/assets/7e4a946c-9b9c-4cd8-8d78-2b3156e10f8d)
 
 7.  Save and exit the file by hitting the ESC key and using `:wq`.
 8.  Finish creating the PersistentVolume by using `kubectl create -f host-pv.yml`.
@@ -62,6 +66,8 @@ PersistentVolumes provide a way to treat storage as a dynamic resource in Kubern
              storage: 100Mi
     ```
 
+    ![image](https://github.com/user-attachments/assets/7b531bfd-b56b-479e-8dcb-944ba535017e)
+
 3.  Save and exit the file by hitting the ESC key and using `:wq`.
 4.  Finish creating the PersistentVolumeClaim by using `kubectl create -f host-pvc.yml`.
 5.  Check the status of the PersistentVolume and PersistentVolumeClaim to verify that they have been bound:
@@ -70,6 +76,8 @@ PersistentVolumes provide a way to treat storage as a dynamic resource in Kubern
     kubectl get pv
     kubectl get pvc
     ```
+
+    ![image](https://github.com/user-attachments/assets/d1969185-1300-4fa0-b613-c4472f6ed9d2)
 
 ### Create a Pod That Uses a PersistentVolume for Storage
 
