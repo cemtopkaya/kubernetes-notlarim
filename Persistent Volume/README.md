@@ -71,6 +71,8 @@ Tüm dosyaları görüntülemek için `kubectl kustomize` komutunu çalıştıra
 8.  Finish creating the PersistentVolume by using `kubectl create -f host-pv.yml`.
 9.  Check the status of the PersistenVolume by using `kubectl get pv`.
 
+![image](https://github.com/user-attachments/assets/dc2854e9-97ff-4cb4-921d-ceae11beb41a)
+
 ### Create a PersistentVolumeClaim
 
 1.  Start creating a PersistentVolumeClaim for the PersistentVolume to bind to by using `vi host-pvc.yml`.
