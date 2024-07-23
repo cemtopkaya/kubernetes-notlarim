@@ -98,14 +98,14 @@ Tüm dosyaları görüntülemek için `kubectl kustomize` komutunu çalıştıra
 4.  Finish creating the PersistentVolumeClaim by using `kubectl create -f host-pvc.yml`.
 5.  Check the status of the PersistentVolume and PersistentVolumeClaim to verify that they have been bound:
 
-    ```
+    ```sh
     kubectl get pv
     kubectl get pvc
     ```
 
-    ![image](https://github.com/user-attachments/assets/d1969185-1300-4fa0-b613-c4472f6ed9d2)
+StorageClass yaratıldıktan sonra PV yaratıyoruz ve durumunu `available` olarak görüyoruz. Ne zaman ki PVC'yi yaratıyoruz PV'nin durumu `bound` durumuna geçiyor. Aynı şekilde PVC'nin durumunu da `host-pv`'ye bağlı `bound` olarak görebiliyoruz.yukarıdaki ekran çıktısında. 
 
-- StorageClass yaratıldıktan sonra PV yaratıyoruz ve durumunu `available` olarak görüyoruz. Ne zaman ki PVC'yi yaratıyoruz PV'nin durumu `bound` durumuna geçiyor. Aynı şekilde PVC'nin durumunu da `host-pv`'ye bağlı `bound` olarak görebiliyoruz.yukarıdaki ekran çıktısında. 
+![image](https://github.com/user-attachments/assets/d1969185-1300-4fa0-b613-c4472f6ed9d2)
 
 ### Create a Pod That Uses a PersistentVolume for Storage
 
