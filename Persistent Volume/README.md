@@ -105,6 +105,8 @@ Tüm dosyaları görüntülemek için `kubectl kustomize` komutunu çalıştıra
 
     ![image](https://github.com/user-attachments/assets/d1969185-1300-4fa0-b613-c4472f6ed9d2)
 
+> StorageClass yaratıldıktan sonra PV yaratıyoruz ve durumunu `available` olarak görüyoruz. Ne zaman ki PVC'yi yaratıyoruz PV'nin durumu `bound` durumuna geçiyor. Aynı şekilde PVC'nin durumunu da `host-pv`'ye bağlı `bound` olarak görebiliyoruz.yukarıdaki ekran çıktısında. 
+
 ### Create a Pod That Uses a PersistentVolume for Storage
 
 1.  Create a Pod that uses the PersistentVolumeClaim by using `vi pv-pod.yml`.
