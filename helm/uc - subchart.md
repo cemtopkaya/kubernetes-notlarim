@@ -16,10 +16,12 @@ Bu, bağımlılıklarınız için değerleri ana grafikte, yani ana grafik için
 ![image](https://github.com/user-attachments/assets/b8f5d4b3-620e-4d06-87e2-d54aeb4ea045)
 
 
-
 ### Alt Grafiğe Atıfta Bulunma
 
 Alt grafiğe atıfta bulunmak için, ana grafik içinde `somechart.mappingvalues.firstOne` şeklinde referans vereceğiz. Daha sonra alt grafiğe gittiğimizde, `subchartValue.somechartvalue` şeklinde bir değer göreceğiz. Ardından bir global değere atıfta bulunacağız. Bu, değerlerimizi tanımlama şeklimiz açısından önemlidir.
+
+![image](https://github.com/user-attachments/assets/6e6aeb73-b92c-4327-94c2-f2edc411f6bc)
+
 
 ### Uygulamalı Örnek
 
