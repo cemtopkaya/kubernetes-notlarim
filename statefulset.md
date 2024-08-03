@@ -76,6 +76,8 @@ Bu sayede, stateful uygulamaları Kubernetes üzerinde çalıştırmak daha kola
 
 Aşağıda basit bir StatefulSet YAML örneği bulunmaktadır:
 
+**Başsız Hizmet (Headless Service) Tanımı:**
+
 ```yaml
 apiVersion: v1
 kind: Service
@@ -92,12 +94,13 @@ spec:
     app: nginx
 ```
 
-**Başlık Servis (Headless Service) Tanımı:**
-- `apiVersion: v1` ve `kind: Service` ile bir başlık servisi (headless service) tanımlanır.
+- `apiVersion: v1` ve `kind: Service` ile bir başsız hizmet (headless service) tanımlanır.
 - Servis adı "nginx" olarak belirtilmiştir.
 - Servise `"app: nginx"` etiketini ekler. Bu etiket, başlık servisi ile pod'ları eşleştiren bir etiketleme şemasıdır.
 - Servis, 80 numaralı bir portu açar ve "web" adıyla etiketler.
 - `clusterIP: None` ile başlık servisi (headless service) olarak ayarlanır. Aşağıda yaratılacak StatefulSet, bu başlık servisini hedef alarak her pod'un kendi benzersiz DNS girdilerine sahip olmasını sağlar.
+- Headless Service sadece servisin keşfedilmesini sağlar ancak IP ataması ve yük dengeleme yapmaz
+- DNS isteklerini doğrudan POD'a yönlendirir. Özellikle StatefulSet gibi uygulamalarda her bir pod'un belirli bir kimliği ve durumu koruması gerektiğinde kullanışlıdır.
 
 ```yaml
 apiVersion: apps/v1
@@ -134,7 +137,7 @@ spec:
           storage: 1Gi
 ```
 
-Bu YAML dosyası, bir başlık servisi (Headless Service) ve bu başlık servisini hedef alan bir StatefulSet tanımı içerir. Başlık servisi, "nginx" adında etiketlenmiş pod'lara sahip bir "app: nginx" etiketleme şeması ile ilgilenir. Ayrıca bu pod'lar için hiçbir ClusterIP tahsis etmez ve bu nedenle "clusterIP: None" ile başlık servisi olarak ayarlanmıştır.
+Bu YAML dosyası, bir Headless Service ve bu servisini hedef alan bir StatefulSet tanımı içerir. Headless Servisi, "nginx" adında etiketlenmiş pod'lara sahip bir `app: nginx` etiketleme şeması ile ilgilenir. Ayrıca bu pod'lar için hiçbir ClusterIP tahsis etmez ve bu nedenle `clusterIP: None` ile headless servisi olarak ayarlanmıştır.
 
 Aşağıda YAML dosyasının detayları:
 
