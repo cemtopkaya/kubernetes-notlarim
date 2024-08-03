@@ -6,9 +6,16 @@
 
 Önce temel terimlere bir göz atalım:
 
+```
+Hey what's up?
+Nasılsın? Ne var ne yok?
+```
+Bir insanın şu anki fiziki veya manevi hallerini/durumlarını öğrenmek isteriz. POD için de aynı şekilde düşünebiliriz. Her bir POD'un ayarlarını, verilerine `DURUM-STATE` deriz ve bunları korumak için statefulset kullanırız.
+
 1. **State (Durum)**: Bir uygulamanın veya sistem bileşeninin içinde bulunduğu anlık koşul veya durum. Verilerin, yapılandırmaların, işlem durumlarının ve diğer değişkenlerin belirli bir zamandaki durumu.
 
-2. **Stateless (Durumsuz)**: Durumsuz, bir sistem veya uygulamanın çalışma durumunun tutulmadığı veya saklanmadığı bir durumu ifade eder. Her işlem veya istek, herhangi bir önceki işlem veya istekin sonucunu veya durumunu bilmeyen ve etkilemeyen bir şekilde işlenir. Örneğin, HTTP protokolü stateless bir protokoldür.
+2. **Stateless (Durumsuz)**: Bir sistem veya uygulamanın çalışma durumunun tutulmadığı veya saklanmadığı hali ifade eder. Her işlem veya istek, herhangi bir önceki işlem veya istekin sonucunu veya durumunu bilmeyen ve etkilemeyen bir şekilde işlenir. Örneğin, HTTP protokolü stateless bir protokoldür (veri işlenir ve unutulur) bu yüzden önceki isteklerdeki durumlar COOKIE (istemcide), SESSION (sunucuda) denilen yapılarda tutulmaya çalışılır.
+
 ```csharp
 public class Calculator {
     public int Add(int a, int b) {
@@ -20,7 +27,8 @@ public class Calculator {
     }
 }
 ```
-Yukarıdaki Calculator sınıfı stateless (durumsuz, veri tutmayan) yapıdadır.
+
+Yukarıdaki Calculator sınıfı stateless (durumsuz, veri tutmayan) yapıdadır. 
 
 3. **Stateful (Durum Taşıyan)**: Durum taşıyan, bir sistem veya uygulamanın çalışma durumunun takip edildiği ve saklandığı bir durumu ifade eder. Her işlem veya istek, önceki işlemlerin sonuçlarına veya durumuna bağlı olarak işlenir. Örneğin, bir veritabanı, durum taşıyan bir sistemdir çünkü verilerin durumu sürekli olarak güncellenir ve saklanır.
 ```csharp
