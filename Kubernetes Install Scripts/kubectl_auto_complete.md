@@ -47,3 +47,8 @@ echo 'complete -o default -F __start_kubectl k' >>~/.bashrc
 ```
 
 Bash kabuğunuzu yeniden yükleyin. Kullanılabilir seçenekleri görmek ve otomatik tamamlamanın takma adla çalıştığını doğrulamak için `k -` yazın ve ardından sekmeye iki kez basın.
+
+Bonus olarak PS1 örneği:
+```sh
+export PS1='\[\033[0;33m\]$(date +%3N)@$(pwd)\n\[\033[0m\]'
+```
