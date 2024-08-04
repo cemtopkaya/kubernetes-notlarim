@@ -1,4 +1,7 @@
 # Kubernetes (k8s) Notlarım
+
+Kubernetes, dağıtık çalışan konteyner orkestrasyon çerçevesidir. Bunu kullanmak için pod, depolama gibi kaynaklara çeşitli tanımlar yazabiliriz. Sonra bunları bir düğüm kümesine (cluster) uyguluyoruz; bu noktada Kubernetes nerede çalıştırılacağına ve hangi iş yükü için hangi depolama alanı alacağına karar veriyor.
+
 K8s notlarımı aldığım repo
 
 
