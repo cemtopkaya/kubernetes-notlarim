@@ -45,4 +45,8 @@ spec:
     emptyDir: {}
 ```
 
-
+Podu ayaklandırmak, günlükleri görmek için:
+```sh
+kubectl apply -f writer-pod.yaml
+kubectl logs writer-pod -c reader-container
+```
