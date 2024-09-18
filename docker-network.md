@@ -11,6 +11,15 @@ Aşağıdaki iptables komutunun yardım çıkları biraz daha aşağıda oluştu
 [!] --in-interface -i input name[+]    network interface name ([+] for wildcard)
 --match       -m match                 extended match (may load extension)
 ```
+>  İptables, Linux çekirdeğiyle çalışan, ağ trafiğini kontrol etmek, yönetmek ve filtrelemek için kullanılan bir komut satırı aracıdır. Gelen, giden ve yönlendirilen ağ paketlerini analiz eder ve önceden tanımlanmış kurallara göre bu paketler üzerinde işlem yapar.  İptables, zincirler ve tablolar kullanarak çalışır. En yaygın tablolar: **filter**, **nat** ve **mangle**'dır.
+> Kullanım alanları:
+> - Güvenlik duvarı olarak
+> - Ağ adres çevirisi (NAT) için
+> - Port yönlendirme
+> - Paket filtreleme
+> a) **Zincirler** (*Chains*): INPUT, OUTPUT, FORWARD
+> b) **Eylemler** (*Actions*): ACCEPT, DROP, REJECT
+> c) **Tablolar** (*Tables*): filter, nat, mangle
 
 Bir konteyner çalışmıyor, bir ağ yaratılmamış ve `iptables -S` çıktısı şöyle:
 ```shell
