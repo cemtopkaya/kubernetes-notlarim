@@ -55,7 +55,7 @@ public class Counter {
 ```
 Yukarıdaki `Counter` sınıfı stateful yapıdadır. Her bir örneğinin `count` adında bir durumu (state) vardır ve count değerini daima içinde saklar.
 
-StatefulSet, bu "durum taşıyan" uygulamaları Kubernetes ortamında dağıtmak ve yönetmek için kullanılan bir Kubernetes kaynağıdır. 
+StatefulSet, bu "durum taşıyan" uygulamaları (stateful applications) Kubernetes ortamında dağıtmak ve yönetmek için kullanılan bir Kubernetes kaynağıdır. **Durum bilgisi taşıyan uygulamalar**, veritabanları, key-value depoları ve herhangi bir uygulama türüdür ki bu uygulamalar kaydedilmiş verileri veya önceki durumları sorgulamak için kullanabilir.
 Kubernetes'de StatefulSet, veri tabanları, mesaj kuyrukları ve diğer stateful iş yükleri gibi **içinde bulundukları durumu koruyan uygulamalar**ın Kubernetes üzerinde nasıl yönetileceğini tanımlar. 
 StatefulSet, her bir pod'a benzersiz bir isim ve ağ kimliği verir ve bu pod'ların sıralı başlatılmasını ve durdurulmasını sağlar.
 Yani, StatefulSet içindeki pod'lar "stateful" olarak yönetilirler. Her bir pod, kendi içindeki verileri (durumu) saklar ve bu veriler genellikle kalıcı bir depolama biriminde bulunur. 
@@ -65,12 +65,37 @@ Bu, verilerin kalıcı ve benzersiz olduğu anlamına gelir ve her pod'ın kendi
 > Kubernetes (k8s), stateful olmayan (stateless) uygulamaların tanımlanması için özellikle **Deployments** ve **ReplicationControllers** ve **Pod** gibi kaynaklar kullanmanızı sağlar.
 > Stateless uygulamalar, her bir çalışan örneğin (pod), uygulama için aynıdır ve herhangi bir özel durumu (state) saklamazlar.
 
-StatefulSet, 
+İşte StatefulSet kullanmanın bazı önemli avantajları:
 - her bir pod'a benzersiz bir isim ve ağ kimliği verir,
 - bu pod'ların sıralı başlatılmasını ve durdurulmasını sağlar,
 - volume yönetimi sunar ve veritabanları gibi stateful iş yüklerinin gereksinimlerini karşılar.
 
-Bu sayede, stateful uygulamaları Kubernetes üzerinde çalıştırmak daha kolay hale gelir.
+
+1. **Sabit ve Benzersiz Ağ Kimlikleri**
+
+   Her StatefulSet pod'u için sabit ve benzersiz bir ağ kimliği sağlar.
+   > Bir pod silinip yeniden oluşturulsa bile, aynı adı ve ağ adresini alır. Bu, özellikle veri tutarlılığı ve bulunabilirliği önemli olan uygulamalar için kritik bir özelliktir.
+2. **Düzenli ve Öngörülebilir Dağıtım ve Ölçekleme**
+
+   StatefulSet'ler pod'ları **sırayla ve düzenli bir şekilde oluşturur ve siler**.
+   > Bu, özellikle çoklu replika yapılandırmalarında veri tutarlılığını ve kümelenmiş uygulamaların doğru senkronizasyonunu sağlar.
+3. **Sabit Depolama Eşleme**
+
+   StatefulSet pod'ları, kalıcı depolama birimleri (PersistentVolumes) ile sabit bir şekilde eşlenir.
+   > Bir pod yeniden başlatılsa bile, aynı depolama birimine yeniden bağlanabilir, bu da uygulamanın önceki durumunu veya verilerini korumasını sağlar.
+4. **İnce Düzeyde Güncelleme Kontrolü**
+
+   Güncelleme stratejileri (`RollingUpdate` veya `OnDelete`), StatefulSet yöneticilerinin uygulama güncellemeleri sırasında daha fazla kontrol sahibi olmasını sağlar.
+   > Örneğin, **`RollingUpdate`** stratejisi, güncellemeleri tek tek pod'lara uygulayarak sistemin her zaman bir kısmının çalışır durumda olmasını sağlar.
+5. **Pod Sıralaması ve Otomatik Yönetim**
+
+   StatefulSet, pod isimlerini sonuna bir sayı ekleyerek sıralar (örneğin, myapp-0, myapp-1 vb.).
+   > Bu sayede, uygulamaların hangi sırayla başlatılması veya durdurulması gerektiğini belirleyebilir. Bu, veritabanı kümeleri gibi sıralı başlatılması gereken uygulamalar için yararlıdır.
+6. **Pod Affinity/Anti-affinity**
+
+   Podların belirli düğümler üzerinde yerleştirilmesini sağlayarak yüksek kullanılabilirlik ve yük dengelemesi stratejilerini destekler.
+   > Bu, özellikle bölgesel yük dengeleme veya belirli donanım gereksinimleri olan uygulamalar için önemlidir.
+
 
 # Basit Bir StatefulSet Örneği
 
