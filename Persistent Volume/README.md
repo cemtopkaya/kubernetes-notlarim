@@ -1,3 +1,84 @@
+# PersistentVolume (PV) ve PersistentVolumeClaim (PVC)
+
+Kubernetes'te PersistentVolume (PV) ve PersistentVolumeClaim (PVC) yapıları, depolama kaynaklarının yönetimi için kullanılır. Bu yapılar, depolama kaynaklarını pod'lardan soyutlayarak, veri kalıcılığını ve esnekliğini sağlar.
+
+## 1. Persistent Volume (PV):
+PersistentVolume (PV), küme düzeyinde (cluster) genellikle bir sistem yöneticisi tarafından oluşturulur ve bir depolama havuzu olarak düşünülebilir. Sisteminizdeki fiziki depolama (örneğin, diskler, NFS, iSCSI vb.) kaynaklarını temsil eder. Bir PV, bir pod'dan bağımsız olarak yaratılır ve yönetilir.
+
+Özellikleri:
+- Cluster-wide kaynaklardır, herhangi bir namespace'e bağlı değildir.
+- Pod'lardan bağımsız olarak yaşam döngüsüne sahiptir.
+- Farklı depolama türlerini (NFS, iSCSI, cloud-specific storage vb.) destekler.
+- Belirli bir kapasiteye, erişim moduna ve depolama sınıfına sahiptir.
+
+## 2. Persistent Volume Claim (PVC):
+PVC, bir kullanıcının veya Pod'un depolama talebini temsil eder. PVC, PV'leri kullanmak için bir istek gibi düşünülebilir. 
+Bir PVC oluşturulduğunda, Kubernetes otomatik olarak uygun bir PV'yi bulur ve PVC'ye bağlar. Eğer uygun bir PV bulunamazsa, bazı depolama sınıfları dinamik olarak yeni bir PV oluşturabilir. Bu süreç, depolama kaynaklarının esnek ve otomatik bir şekilde kullanımını sağlar.
+Bu yapılar, verilerin pod ömrü boyunca ve pod'lar arası kalıcı olmasını sağlayarak, stateful uygulamaların Kubernetes'te etkin bir şekilde çalışmasını mümkün kılar.
+
+Özellikleri:
+- Namespace'e özgüdür.
+- Kullanıcılar PVC oluşturarak depolama taleplerini belirtir.
+- PVC, uygun bir PV ile eşleştirilir (binding).
+- Pod'lar, PVC'leri kullanarak depolama alanına erişir.
+
+PV ve PVC'nin nasıl tanımlandığını ve kullanıldığını gösteren bir örnek verelim:
+
+```yaml
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: my-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: standard
+  nfs:
+    server: nfs-server.default.svc.cluster.local
+    path: "/path/to/data"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500Mi
+  storageClassName: standard
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+  - name: my-container
+    image: nginx
+    volumeMounts:
+    - name: my-storage
+      mountPath: "/usr/share/nginx/html"
+  volumes:
+  - name: my-storage
+    persistentVolumeClaim:
+      claimName: my-pvc
+
+```
+
+Bu örnekte:
+
+1. Bir PV tanımlanıyor (1Gi kapasiteli NFS depolama).
+2. Bir PVC tanımlanıyor (500Mi talep ediyor).
+3. Bir Pod tanımlanıyor ve PVC'yi bir volume olarak kullanıyor.
+
+PV ve PVC sistemi, depolama kaynaklarının yönetimini ve kullanımını ayrıştırarak esneklik sağlar. Yöneticiler PV'leri oluşturur, kullanıcılar PVC'ler aracılığıyla bu kaynakları talep eder ve Kubernetes, uygun PV'leri PVC'lere bağlar.
+
 # Using PersistentVolumes in Kubernetes
 
 ## Introduction
