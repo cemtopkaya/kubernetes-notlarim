@@ -42,3 +42,77 @@ gitlab_rails['gitlab_default_projects_features_merge_requests']=true
 gitlab_pages['enable'l= false
 ports
 '8080:80*
+'8080:80'
+120
+121
+122
+-gitlab_config:/etc/gitlab
+-gitlab_logs:/var/1og/gitlab
+gitlab_data:/var/opt/gitlab
+gitlab_uploads:/var/opt/gitlab/gitlab-rails/uploads
+gitlab_packages:/var/opt/gitlab/gitlab-rails/shared/packages
+128
+-gitlab_1fs-objects:/var/opt/gitlab/gitlab-rails/shared/lfs-objects
+gitlab_registry:/var/opt/gitlab/gitlab-rails/shared/registry 
+gitlab_artifacts:/var/opt/gitlab/gitlab-rails/shared/artifacts
+88 Manage
+132
+/tmp:/yedek
+#-'$GITLAB_HOME/config:/etc/gitlab:z'
+台 Plan
+133
+#-'$GITLAB_HOME/1ogs:/var/log/gitlab:z'
+#-*$GITLAB_HOME/data:/var/opt/gitlab:z'
+</>Code
+135
+* 64 MB olarak kalirsa, Gitlab yogun yik altina girdiginde veya biyük bir MR/diff aç1ldzginda PostgresQL ya da
+< Build
+136
+137
+# gunluklerinde $u hatayla kargilagilir ve servisler yeniden baslar: PG::0ut0fMemory: ERROR: out of memory fo
+Φ Secure
+139
+healthcheck:
+test:["CMD"，"gitlab-healthcheck"]
+@ Deploy
+140
+interval:30
+timeout: 10s
+@ Operate
+142
+143
+四Monitor
+144
+gitlab-init-settings:
+image: docker:cli
+ Analyze
+147
+restart:"no"
+@ Settings
+148
+149
+depends_on:
+150
+gitlab:
+condition: service_healthy
+152
+153
+-/var/run/docker.sock:/var/run/docker.sock
+entrypoint:["/bin/sh"，“-c"]
+156
+157
+echo ">>> Gitlab ayakta ve sajlikl1 durumda. fglemler baglatillyor...“
+168
+# 1. gitlab.rb Dosyasina Omnibus Ayarlar1na Yaz (Mokerrer yazim engellemek igin grep kontroli ile)
+ocker exec gitlab-ce /bin/sh -c “
+ogkep execaattuaepoteattai.com.tr' /etc/gitlab/gitlab.rh II gcha \*xternaL_ur1'https://dockerrepotest.tai-con.tr""2 /etc/git1ab/g
+grep -q'letsencrypt\[.*enable.*\]'/etc/gitlab/gitlab.rb II echo \"Letsencrypt['enable']= false\">>/etc/gitlab/gitlab.rb
+echo ">>> gitlab.rb gincellendi.
+Reconfigure çaligtiriliyor..."
+166
+167
+# 2. Degisiklikleri Omnibus Chef Katmanina Uygula
+168
+ock exe gitab-ce gitlab-ctl reconfigure
+# 3.Rails/ Veritabani Katmanina PlantUML Ayarlar1n1 Bas
+echo “>>>PlantUML veritaban1 ayarlari yazillyor.
