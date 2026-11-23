@@ -1,0 +1,44 @@
+services:
+gitlab:
+image:registry.tai.cam.tr/1ibrary/gitLab/gitlab-ce:17.3.3-ce.0
+container_name: gitlab-ce
+restart: always
+environment:
+GITLAB_OMNIBUS_CONFIG:|
+external_uri 'http://dockerrepotest.tai.com.tr'
+# SSH port çak1smasin1 önlemek için dahili port eslemesi h
+gitlab_rails['gitlab_shell_ssh_port']=2222
+# Zaman dilimi ayari
+gitlab_rails['time_zone'J='Europe/Istanbul'_
+# Gereksiz servisleri kapatip kaynak tasarrufu saglamak için (istege bagli):
+Letsencrypt['enable']= false
+# Harici Prometheus kullan1yorsan1z veya metrik_toplamzyorsaniz 560 mB 1 GB tasarruf sagTar.
+prometheus_monitoring['enable']= false
+prometheus['enable'] = false
+# Dahili alarm yöneticisi.
+alertmanager['enable']= false
+node_exporter['enable']= false
+redis_exporter['enable'] =false 
+postgres_exporter['enable']= false
+gitlab_exporter['enable']= false
+# Kubernetes Agent Server (Kubernetes entegrasyono yoksa)
+gitlab_kas['enable']= false
+# 2.RUNTIME /WORKER OPTiniZASYONU全
+# ================
+# Puma:Hinimum 2 worker bnerilir (1 worker Kilitlenmelere yol agabilir)
+puma['worker_processes']=2
+puma['min_threads']-1
+puma['max_threads']=4
+sidekiq['concurrency']= 10
+# 3.6ZELLIK VE MODUL KISITLAMALARI
+i "gitlab_default_projects_features_*" Yeni projelerde Wiki, Snippet gibi modülleri varsayzlan olarak kapatzr
+gitlab_rails['gitlab_default_projects_features_wiki']= false
+gitlab_rails['gitlab_defaultzprojects_features_snippets']= false
+gitlab_rails['gitlab_default_projects_features_issues']= true
+gitlab_rails['gitlab_default_projects_features_merge_requests']=true
+# Dahili Container Registry kullanmiyarsanzz(öirn:Harbar varsa)
+# registry['enable']= false
+#t Dahili GitLab Pages kullanmiyorsaniz
+gitlab_pages['enable'l= false
+ports
+'8080:80*
